@@ -3,13 +3,14 @@ package model;
 import java.util.List;
 
 public class Admin extends Person {
-    public Admin(String firstName, String secondName) {
-        super(firstName, secondName);
+    public Admin(String name) {
+        super(name,Permission.ADMIN);
     }
 
+
     @Override
-    List<Project> getProjects() {
-        return null;
+    public String getInfo() {
+        return name;
     }
 
     void deleteProject(Project project) {

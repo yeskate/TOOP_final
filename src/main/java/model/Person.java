@@ -1,22 +1,23 @@
 package model;
 
-import java.util.List;
-
 public abstract class Person {
-    String firstName;
-    String secondName;
+    String name;
+    public Permission permission;
 
-    Person(String firstName, String secondName) {
-        this.firstName = firstName;
-        this.secondName = secondName;
+    Person(String name, Permission permission) {
+        this.name = name;
+        this.permission = permission;
     }
 
-    abstract List<Project> getProjects();
+    public String getName() {
+        return name;
+    }
 
-    public static enum  Permission{
+    public abstract String getInfo();
+
+    public enum Permission {
         PARTICIPANT,
         PROFESSOR,
-        ADMIN,
-        UNKNOWN
+        ADMIN
     }
 }

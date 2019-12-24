@@ -1,32 +1,61 @@
 package model;
 
+import controller.UserRegister;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Project {
-    String nameOfProject;
-    String purposeOfProject;
-    String tasks;
-    String deadline;
-    String supervisor;
-    List<Participant> participants;
-    List<String> tags;
+public class Project {
+    public String nameOfProject;
+    public String purposeOfProject;
+    public String tasks;
+    public String deadline;
+    public Professor supervisor;
+    public List<String> participants;
+    public List<String> tags;
 
-    public Project(String name, String purpose, String tasks, String deadline, String supervisor) {
+    public Project(String name, String purpose, String tasks, String deadline, Professor supervisor,
+                   List<String> participants, List<String> tags) {
         this.nameOfProject = name;
         this.purposeOfProject = purpose;
         this.tasks = tasks;
         this.deadline = deadline;
         this.supervisor = supervisor;
+        this.tags = tags;
+        this.participants = participants;
     }
 
-    List<Participant> printParticipants() {
+
+    List<String> printParticipants() {
         if (participants.isEmpty()) {
             throw new NullPointerException("Users doesn't pointed");
         }
         return participants;
     }
 
-    void addParticipants(Participant participant) {
+    public String getName() {
+        return this.supervisor.name;
+    }
+
+    public String getInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(nameOfProject).append("/");
+        sb.append(purposeOfProject).append("/");
+        sb.append(tasks).append("/");
+        sb.append(deadline).append("/");
+        sb.append(supervisor.name).append("/");
+        for (String p : participants) {
+            sb.append(p).append(",");
+        }
+        sb.deleteCharAt(sb.length()-1);
+        sb.append("/");
+        for (String t : tags) {
+            sb.append(t).append(",");
+        }
+        return sb.toString().substring(0, sb.toString().length() - 1);
+    }
+
+    void addParticipants(String participant) {
         participants.add(participant);
     }
 
@@ -36,7 +65,7 @@ public abstract class Project {
         }
     }
 
-    int getCountOfParticipants(){
+    int getCountOfParticipants() {
         return participants.size();
     }
 

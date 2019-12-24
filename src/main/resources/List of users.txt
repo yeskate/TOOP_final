@@ -1,0 +1,6 @@
+mark/professor/a1;a3
+allis/participant/2/Math,Rus
+lon/participant/3/Math
+pon/professor/a2;a4;
+dan/participant/1/Math,Rus
+jhon/participant/2/Rus
