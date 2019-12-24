@@ -1,22 +1,36 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Professor extends Person {
-    List<String> projects;
+    public ArrayList<String> projects;
 
     public Professor(String line) {
-        super(line.split("/")[0],Permission.PROFESSOR);
+        super(line.split("/")[0], Permission.PROFESSOR);
         String[] params = line.split("/");
-        String[] projects = params[2].split(";");
-        List<String> tmp = new ArrayList<>();
-        for (String project : projects) {
-            tmp.add(project);
+        if (params.length == 2) {
+            this.projects = new ArrayList<>();
+        } else {
+            String[] projects = params[2].split(";");
+            ArrayList<String> tmp = new ArrayList<>();
+            for (String pr: projects){
+                tmp.add(pr);
+            }
+            this.projects = tmp;
         }
-        this.projects = tmp;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void addProject(String project) {
+        this.projects.add(project);
+    }
+
+    public void deleteProject(String project){
+        this.projects.remove(project);
+    }
     @Override
     public String getInfo() {
         StringBuilder sb = new StringBuilder();
@@ -26,17 +40,5 @@ public class Professor extends Person {
             sb.append(project).append(";");
         }
         return sb.toString().substring(0, sb.toString().length() - 1);
-    }
-
-    void deleteProject(Project project) {
-        if (projects.contains(project)) {
-            projects.remove(project);
-        } else {
-            System.out.println("Project doesn't found");
-        }
-    }
-
-    void addProject(Project project) {
-        projects.add(project.nameOfProject);
     }
 }

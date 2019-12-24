@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Admin extends Person {
     public Admin(String name) {
-        super(name,Permission.ADMIN);
+        super(name, Permission.ADMIN);
     }
 
 
@@ -13,10 +13,4 @@ public class Admin extends Person {
         return name;
     }
 
-    void deleteProject(Project project) {
-    }
-
-    void addProject(Project project) {
-
-    }
 }

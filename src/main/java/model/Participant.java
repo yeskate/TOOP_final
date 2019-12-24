@@ -1,28 +1,18 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Participant extends Person {
     int course;
     List<String> skills;
 
-    public Participant(String name, int course, List<String> skills) {
-        super(name, Permission.PARTICIPANT);
-        this.course = course;
-        this.skills = skills;
-    }
-
     public Participant(String line) {
         super(line.split("/")[0], Permission.PARTICIPANT);
         String[] params = line.split("/");
         this.course = Integer.parseInt(params[2]);
-        List<String> tmp = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
-        for (String skill : params[3].split(",")) {
-            tmp.add(skill);
-        }
-        this.skills = tmp;
+        String[] skills = params[3].split(",");
+        this.skills = Arrays.asList(skills);
     }
 
     @Override

@@ -42,6 +42,8 @@ public abstract class BaseRegister {
         return lines;
     }
 
+    public abstract void rewrite();
+/*
     public void addString(String line) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path.toString()))) {
             try {
@@ -53,6 +55,6 @@ public abstract class BaseRegister {
             e.printStackTrace();
         }
         //todo удалить строку из файла
-    }
+    }*/
 }
 

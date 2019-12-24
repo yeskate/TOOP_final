@@ -1,10 +1,10 @@
 package controller;
 
-import model.Admin;
-import model.Participant;
-import model.Person;
-import model.Professor;
+import model.*;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,13 +47,18 @@ public class UserRegister extends BaseRegister {
         return null;
     }
 
-    public static void printUsers() {
+    public void printUsers() {
         System.out.println("name | status | course/projects | skills/projects");
         for (Person user : users) {
             StringBuilder sb = new StringBuilder();
             sb.append(user.getInfo().replace("/", "   "));
             System.out.println(sb.toString());
         }
+    }
+
+    public void setName(String name){
+        Professor professor = (Professor) users.get(users.indexOf(getUser(name)));
+        professor.setName(name);
     }
 
     public void addPerson(String person) {
@@ -74,6 +79,30 @@ public class UserRegister extends BaseRegister {
                 break;
         }
         users.add(user);
-        addString(user.getInfo());
+    }
+
+    public static void search(String fragment) {
+        for (Person person : users) {
+            if (person.getInfo().toLowerCase().contains(fragment)) {
+                System.out.println(person.getInfo().replace("/", "  "));
+            }
+        }
+    }
+
+    @Override
+    public void rewrite() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path.toString()))) {
+            try {
+                for (Person person : users) {
+                    writer.write(person.getInfo() + "\n");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }
