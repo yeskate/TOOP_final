@@ -46,7 +46,7 @@ public class Project {
 
     public void deleteParticipants(String participant) {
         if (!participants.remove(participant)) {
-            System.out.println("Student doesn't found");
+            System.out.println("Участник не найден");
         }
     }
 }

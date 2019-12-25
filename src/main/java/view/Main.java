@@ -11,9 +11,7 @@ import java.io.InputStreamReader;
 import static controller.ProjectRegister.deleteParticipant;
 import static controller.UserRegister.getUser;
 
-
 public class Main {
-    //todo пофиксить абсолютные пути
     private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
     private static Person user;
     public static UserRegister userRegister = new UserRegister();
@@ -27,7 +25,7 @@ public class Main {
             System.out.println("Неверный логин");
             authorization();
         } else {
-            System.out.println("Вход выполнен");
+            System.out.println("Вход выполнен, здравствуйте, " + username);
             user = getUser(username);
         }
     }
@@ -64,45 +62,48 @@ public class Main {
                 UserRegister.search(fragment);
                 break;
             case 6:
+                System.out.println("Введите данные нового участника проекта");
                 if (user.permission != Person.Permission.PARTICIPANT) {
                     input = in.readLine().trim();
                     projectRegister.addParticipant(input);
                 } else {
-                    System.out.println("У вас нет доступа");
+                    System.out.println("У вас нет доступа\n");
                 }
                 break;
             case 7:
+                System.out.println("Введите название проекта и имя участника, которого нужно удалить");
                 if (user.permission != Person.Permission.PARTICIPANT) {
                     input = in.readLine().trim();
                     deleteParticipant(input);
                 } else {
-                    System.out.println("У вас нет доступа");
+                    System.out.println("У вас нет доступа\n");
                 }
                 break;
             case 8:
                 if (user.permission != Person.Permission.PARTICIPANT) {
+                    System.out.println("Введите имя пользователя и рейтинг");
                     input = in.readLine().trim();
                     UserRegister.changeRating(input);
                 } else {
-                    System.out.println("У вас нет доступа");
+                    System.out.println("У вас нет доступа\n");
                 }
                 break;
             case 9:
                 try {
                     if (user.permission == Person.Permission.ADMIN) {
-                        System.out.println("Введите данные пользователя");
+                        System.out.println("Введите данные нового пользователя (через слэш)");
                         input = in.readLine().trim();
                         userRegister.addPerson(input);
                     } else {
-                        System.out.println("У вас нет доступа");
+                        System.out.println("У вас нет доступа\n");
                     }
                 } catch (Exception e) {
-                    System.out.println("Oops");
+                    System.out.println("Oops\n");
                 }
                 break;
             case 10:
                 if (user.permission == Person.Permission.ADMIN) {
-                    System.out.println("Введите имя студента, которого надо удалить");
+                    System.out.println("Введите имя пользователя, которого нужно удалить");
                     input = in.readLine().trim();
                     userRegister.deletePerson(input);
                 }
@@ -110,22 +111,23 @@ public class Main {
             case 11:
                 try {
                     if (user.permission == Person.Permission.ADMIN) {
-                        System.out.println("Введите данные о проекте");
+                        System.out.println("Введите данные о новом проекте (через слэш)");
                         input = in.readLine().trim();
                         projectRegister.addProject(input);
                     } else {
-                        System.out.println("У вас нет доступа");
+                        System.out.println("У вас нет доступа\n");
                     }
                 } catch (Exception e) {
-                    System.out.println("Oops");
+                    System.out.println("Oops\n");
                 }
                 break;
             case 12:
                 if (user.permission == Person.Permission.ADMIN) {
+                    System.out.println("Введите название проекта, который нужно удалить");
                     input = in.readLine().trim();
                     projectRegister.deleteProject(input);
                 } else {
-                    System.out.println("У вас нет доступа");
+                    System.out.println("У вас нет доступа\n");
                 }
                 break;
             case 13:
@@ -134,7 +136,7 @@ public class Main {
             case 14:
                 return;
             default:
-                System.out.println("Такой команды не существует");
+                System.out.println("Такой команды не существует\n");
                 break;
         }
         workWithProjects();
@@ -156,18 +158,14 @@ public class Main {
         sb.append("11 - добавления проекта в системы (доступно администратору);").append("\n");
         sb.append("12 - удаление проекта из системы (доступно администратору);").append("\n");
         sb.append("13 - сменить пользователя;").append("\n");
-        sb.append("14 - завершение работы;").append("\n");
+        sb.append("14 - завершение работы.").append("\n");
         System.out.println(sb);
     }
 
     public static void main(String[] args) {
-        System.out.println("");
-        /**
-         * Приветсвие
-         */
+        System.out.println("Добро пожаловать в систему управления проектами");
         //вход в систему
         try {
-            //TODO приветсвие и информация о входе
             authorization();
         } catch (IOException e) {
             System.out.println("Не удалось подключить файл с данными о пользователях");
@@ -179,11 +177,7 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        /**
-         * Прощание
-         */
+        System.out.println("Завершение работы");
         userRegister.rewrite();
         projectRegister.rewrite();
     }

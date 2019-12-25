@@ -14,7 +14,10 @@ public class Admin extends Person {
 
     @Override
     public String getInfo() {
-        return name;
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append("/");
+        sb.append("admin");
+        return sb.toString();
     }
 
 }

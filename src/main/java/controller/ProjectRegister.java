@@ -55,25 +55,29 @@ public class ProjectRegister extends BaseRegister {
             }
         }
         if (tmp == null) {
-            System.out.println("Такого проекта не существует");
+            System.out.println("Данного проекта не существует\n");
         } else {
             projects.remove(tmp);
         }
     }
 
     public void printProjects() {
-        System.out.println("Name | Purpose of project | tasks | deadline | supervisor | participants | tags");
+        System.out.println("Список проектов\n");
+        //System.out.println("Название | Цель | Задачи | Сроки | Руководитель | Участники | Тэги\n");
         for (Project project : projects) {
             StringBuilder sb = new StringBuilder();
-            sb.append(project.getInfo().replace("/", "   "));
+            sb.append(project.getInfo().replace("/", "\n"));
             System.out.println(sb.toString());
+            System.out.println("\n");
         }
     }
 
     public void search(String tag) {
         for (Project project : projects) {
             if (project.tags.contains(tag)) {
-                System.out.println(project.getInfo().replace("/", "  "));
+                System.out.println("Подходящие проекты\n");
+                System.out.println(project.getInfo().replace("/", "\n"));
+                System.out.println("\n");
             }
         }
     }
@@ -83,7 +87,7 @@ public class ProjectRegister extends BaseRegister {
         for (Project project : projects) {
             if (project.nameOfProject.equals(params[0])) {
                 project.addParticipants(params[1]);
-                System.out.println("Участники добавлены");
+                System.out.println("Участник добавлен в проект\n");
                 return;
             }
         }
@@ -94,7 +98,7 @@ public class ProjectRegister extends BaseRegister {
         for (Project project : projects) {
             if (project.nameOfProject.equals(params[0])) {
                 project.deleteParticipants(params[1]);
-                System.out.println("Участники удалены");
+                System.out.println("Участник удален из проекта\n");
                 return;
             }
         }

@@ -1,2 +1,2 @@
-a1/b1/cc/12/mark/allis,jhon/Math,Rus
+a1/b1/cc/12/mark/allis,john/Math,Rus
 a2/b2/cc/12/KO/kir/Mat

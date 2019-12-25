@@ -34,7 +34,7 @@ public class UserRegister extends BaseRegister {
             if (user != null) {
                 users.add(user);
             } else {
-                System.out.println("User doesn't found");
+                System.out.println("Пользователь не найден\n");
             }
         }
     }
@@ -49,12 +49,14 @@ public class UserRegister extends BaseRegister {
     }
 
     public void printUsers() {
-        System.out.println("name | status | course/projects | rating/projects | skills/projects");
+        System.out.println("Список пользователей\n");
+        System.out.println("Имя | Статус | Курс/Проекты | Рейтинг/Проекты | Скиллы/Проекты\n");
         for (Person user : users) {
             StringBuilder sb = new StringBuilder();
-            sb.append(user.getInfo().replace("/", "   "));
+            sb.append(user.getInfo().replace("/", " | "));
             System.out.println(sb.toString());
         }
+        System.out.println("\n");
     }
 
     public void addPerson(String person) {
@@ -75,6 +77,7 @@ public class UserRegister extends BaseRegister {
                 break;
         }
         users.add(user);
+        System.out.println("Пользователь добавлен в систему\n");
     }
 
     public void deletePerson(String person) {
@@ -83,10 +86,10 @@ public class UserRegister extends BaseRegister {
             if (user.getName().equals(person)) {
                 switch (user.permission) {
                     case ADMIN:
-                        System.out.println("Нельзя удалить админа");
+                        System.out.println("Нельзя удалить администратора\n");
                         return;
                     case PROFESSOR:
-                        System.out.println("Нельзя удалить профессора");
+                        System.out.println("Нельзя удалить профессора\n");
                         return;
                     case PARTICIPANT:
                         for (Project project : ProjectRegister.projects) {
@@ -94,7 +97,7 @@ public class UserRegister extends BaseRegister {
                                 project.deleteParticipants(person);
                             }
                         }
-                        System.out.println("Пользователь удалён");
+                        System.out.println("Пользователь удалён из системы\n");
                         usr = user;
                         break;
                 }
@@ -102,7 +105,7 @@ public class UserRegister extends BaseRegister {
             }
         }
         if (usr == null) {
-            System.out.println("Пользователь не найден");
+            System.out.println("Пользователь не найден\n");
         } else {
             users.remove(usr);
         }
@@ -111,14 +114,24 @@ public class UserRegister extends BaseRegister {
     public static void search(String fragment) {
         for (Person person : users) {
             if (person.getInfo().toLowerCase().contains(fragment)) {
-                System.out.println(person.getInfo().replace("/", "  "));
+                System.out.println("Подходящие пользователи:\n");
+                System.out.println("Имя | Статус | Курс/Проекты | Рейтинг/Проекты | Скиллы/Проекты\n");
+                System.out.println(person.getInfo().replace("/", " | "));
+                System.out.println("\n");
             }
         }
     }
 
     public static void sortByRating() {
         users.sort(Comparator.comparingInt(Person::getRating).reversed());
-        System.out.println("Отстортировали");
+        System.out.println("Список пользователей отсортирован по рейтингу:\n");
+        System.out.println("Имя | Статус | Курс/Проекты | Рейтинг/Проекты | Скиллы/Проекты\n");
+        for (Person user : users) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(user.getInfo().replace("/", " | "));
+            System.out.println(sb.toString());
+        }
+        System.out.println("\n");
     }
 
     public static void changeRating(String input) {
@@ -127,10 +140,10 @@ public class UserRegister extends BaseRegister {
             if (person.getName().equals(params[0])) {
                 if (person.permission == Person.Permission.PARTICIPANT) {
                     ((Participant) person).changeRating(Integer.parseInt(params[1]));
-                    System.out.println("Рейтинг изменен");
+                    System.out.println("Рейтинг изменен\n");
                     return;
                 } else {
-                    System.out.println("У профессоров и админов нет рейтинга");
+                    System.out.println("У профессоров и администратора нет рейтинга\n");
                 }
             }
         }
