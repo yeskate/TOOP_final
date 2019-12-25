@@ -1,7 +1,5 @@
 package controller;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -16,7 +14,6 @@ public abstract class BaseRegister {
     static List<String> lines = new ArrayList<>();
 
     public BaseRegister(String path) {
-        System.out.println(path);
         this.path = Paths.get(path);
         try {
             if (Files.exists(this.path)) {
@@ -29,32 +26,10 @@ public abstract class BaseRegister {
         }
     }
 
-    public static String getString(String fragment) {
-        for (String line : lines) {
-            if (line.contains(fragment)) {
-                return line;
-            }
-        }
-        return null;
-    }
-
     public List<String> getAllString() {
         return lines;
     }
 
     public abstract void rewrite();
-/*
-    public void addString(String line) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path.toString()))) {
-            try {
-                writer.write(line + "\n");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //todo удалить строку из файла
-    }*/
 }
 

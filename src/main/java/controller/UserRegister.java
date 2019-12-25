@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class UserRegister extends BaseRegister {
@@ -48,17 +49,12 @@ public class UserRegister extends BaseRegister {
     }
 
     public void printUsers() {
-        System.out.println("name | status | course/projects | skills/projects");
+        System.out.println("name | status | course/projects | rating/projects | skills/projects");
         for (Person user : users) {
             StringBuilder sb = new StringBuilder();
             sb.append(user.getInfo().replace("/", "   "));
             System.out.println(sb.toString());
         }
-    }
-
-    public void setName(String name){
-        Professor professor = (Professor) users.get(users.indexOf(getUser(name)));
-        professor.setName(name);
     }
 
     public void addPerson(String person) {
@@ -81,10 +77,61 @@ public class UserRegister extends BaseRegister {
         users.add(user);
     }
 
+    public void deletePerson(String person) {
+        Person usr = null;
+        for (Person user : users) {
+            if (user.getName().equals(person)) {
+                switch (user.permission) {
+                    case ADMIN:
+                        System.out.println("Нельзя удалить админа");
+                        return;
+                    case PROFESSOR:
+                        System.out.println("Нельзя удалить профессора");
+                        return;
+                    case PARTICIPANT:
+                        for (Project project : ProjectRegister.projects) {
+                            if (project.participants.contains(person)) {
+                                project.deleteParticipants(person);
+                            }
+                        }
+                        System.out.println("Пользователь удалён");
+                        usr = user;
+                        break;
+                }
+                break;
+            }
+        }
+        if (usr == null) {
+            System.out.println("Пользователь не найден");
+        } else {
+            users.remove(usr);
+        }
+    }
+
     public static void search(String fragment) {
         for (Person person : users) {
             if (person.getInfo().toLowerCase().contains(fragment)) {
                 System.out.println(person.getInfo().replace("/", "  "));
+            }
+        }
+    }
+
+    public static void sortByRating() {
+        users.sort(Comparator.comparingInt(Person::getRating).reversed());
+        System.out.println("Отстортировали");
+    }
+
+    public static void changeRating(String input) {
+        String[] params = input.split(" ");
+        for (Person person : users) {
+            if (person.getName().equals(params[0])) {
+                if (person.permission == Person.Permission.PARTICIPANT) {
+                    ((Participant) person).changeRating(Integer.parseInt(params[1]));
+                    System.out.println("Рейтинг изменен");
+                    return;
+                } else {
+                    System.out.println("У профессоров и админов нет рейтинга");
+                }
             }
         }
     }

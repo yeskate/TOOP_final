@@ -1,8 +1,9 @@
 mark/professor/a1
-allis/participant/2/Math,Rus
-lon/participant/3/Math
+allis/participant/2/0/Math,Rus
+lon/participant/3/0/Math
 pon/professor
-dan/participant/1/Math,Rus
-jhon/participant/2/Rus
-kir/participant/2/Pol
+dan/participant/1/0/Math,Rus
+jhon/participant/2/0/Rus
+kir/participant/2/0/Pol
 KO/professor/a2
+admin

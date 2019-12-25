@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Professor extends Person {
     public ArrayList<String> projects;
+    public final int RATING = Integer.MAX_VALUE;
 
     public Professor(String line) {
         super(line.split("/")[0], Permission.PROFESSOR);
@@ -24,6 +25,10 @@ public class Professor extends Person {
         this.name = name;
     }
 
+    @Override
+    public int getRating(){
+        return this.RATING;
+    }
     public void addProject(String project) {
         this.projects.add(project);
     }

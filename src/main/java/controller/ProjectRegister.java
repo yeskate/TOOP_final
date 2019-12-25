@@ -15,7 +15,7 @@ import java.util.List;
 import static controller.UserRegister.getUser;
 
 public class ProjectRegister extends BaseRegister {
-    List<Project> projects = new ArrayList<>();
+    static List<Project> projects = new ArrayList<>();
 
     public ProjectRegister() {
         super("/home/kirill/OOP/Project Regist/src/main/resources/List of projects.txt");
@@ -94,7 +94,7 @@ public class ProjectRegister extends BaseRegister {
         }
     }
 
-    public void deleteParticipant(String input) {
+    public static void deleteParticipant(String input) {
         String[] params = input.split(" ");
         for (Project project : projects) {
             if (project.nameOfProject.equals(params[0])) {
