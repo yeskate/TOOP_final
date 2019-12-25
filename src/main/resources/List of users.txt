@@ -6,4 +6,4 @@ dan/participant/1/0/Math,Rus
 jhon/participant/2/0/Rus
 kir/participant/2/0/Pol
 KO/professor/a2
-admin
+admin/admin

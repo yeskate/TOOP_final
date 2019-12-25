@@ -14,28 +14,30 @@ public class Professor extends Person {
         } else {
             String[] projects = params[2].split(";");
             ArrayList<String> tmp = new ArrayList<>();
-            for (String pr: projects){
+            for (String pr : projects) {
                 tmp.add(pr);
             }
             this.projects = tmp;
         }
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
     @Override
-    public int getRating(){
+    public int getRating() {
         return this.RATING;
     }
+
     public void addProject(String project) {
         this.projects.add(project);
     }
 
-    public void deleteProject(String project){
+    public void deleteProject(String project) {
         this.projects.remove(project);
     }
+
     @Override
     public String getInfo() {
         StringBuilder sb = new StringBuilder();

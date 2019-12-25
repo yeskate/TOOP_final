@@ -140,7 +140,7 @@ public class Main {
         workWithProjects();
     }
 
-    private static void writeCommands(){
+    private static void writeCommands() {
         StringBuilder sb = new StringBuilder();
         sb.append("0 - вывод всех команд;").append("\n");
         sb.append("1 - вывод всех проектов (доступно всем);").append("\n");
@@ -159,6 +159,7 @@ public class Main {
         sb.append("14 - завершение работы;").append("\n");
         System.out.println(sb);
     }
+
     public static void main(String[] args) {
         System.out.println("");
         /**

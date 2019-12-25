@@ -13,7 +13,7 @@ public class UserRegister extends BaseRegister {
     static List<Person> users = new ArrayList<>();
 
     public UserRegister() {
-        super("/home/kirill/OOP/Project Regist/src/main/resources/List of users.txt");
+        super("src/main/resources/List of users.txt");
         for (String line : getAllString()) {
             String[] params = line.split("/");
             Person user;

@@ -30,7 +30,7 @@ public class Participant extends Person {
         return sb.toString().substring(0, sb.toString().length() - 1);
     }
 
-    public void changeRating(int deltaRating){
+    public void changeRating(int deltaRating) {
         this.rating += deltaRating;
     }
 

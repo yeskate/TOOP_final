@@ -1,7 +1,5 @@
 package controller;
 
-import model.Participant;
-import model.Person;
 import model.Professor;
 import model.Project;
 
@@ -9,16 +7,13 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import static controller.UserRegister.getUser;
 
 public class ProjectRegister extends BaseRegister {
     static List<Project> projects = new ArrayList<>();
 
     public ProjectRegister() {
-        super("/home/kirill/OOP/Project Regist/src/main/resources/List of projects.txt");
+        super("src/main/resources/List of projects.txt");
         for (String line : lines) {
             String[] param = line.split("/");
             ArrayList<String> participants = new ArrayList<>();

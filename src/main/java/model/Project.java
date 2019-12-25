@@ -49,16 +49,4 @@ public class Project {
             System.out.println("Student doesn't found");
         }
     }
-
-    void addTag(String tag) {
-        tags.add(tag);
-    }
-
-    void deleteTag(String tag) {
-        if (!tags.remove(tag)) {
-            System.out.println("Tag doesn't found");
-        }
-    }
-
-
 }

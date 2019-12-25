@@ -7,10 +7,8 @@ public class Admin extends Person {
         super(name, Permission.ADMIN);
     }
 
-
-
     @Override
-    public int getRating(){
+    public int getRating() {
         return this.RATING;
     }
 
