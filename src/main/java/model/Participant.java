@@ -30,6 +30,11 @@ public class Participant extends Person {
         return sb.toString().substring(0, sb.toString().length() - 1);
     }
 
+    @Override
+    public int getRating(){
+        return this.rating;
+    }
+
     public void changeRating(int deltaRating) {
         this.rating += deltaRating;
     }

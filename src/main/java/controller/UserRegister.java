@@ -62,7 +62,7 @@ public class UserRegister extends BaseRegister {
     public void addPerson(String person) {
         String[] params = person.split("/");
         if (params.length == 0){
-            System.out.println("Неверные входные данные");
+            System.out.println("Неверные входные данные\n");
             return;
         }
         Person user;
@@ -139,7 +139,7 @@ public class UserRegister extends BaseRegister {
     }
 
     public static void changeRating(String input) {
-        String[] params = input.split(" ");
+        String[] params = input.split("/");
         for (Person person : users) {
             if (person.getName().equals(params[0])) {
                 if (person.permission == Person.Permission.PARTICIPANT) {

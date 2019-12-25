@@ -33,7 +33,7 @@ public class ProjectRegister extends BaseRegister {
     public void addProject(String project) {
         String[] params = project.split("/");
         if (params.length == 0){
-            System.out.println("Неверные входные данные");
+            System.out.println("Неверные входные данные\n");
             return;
         }
         Professor professor = (Professor) UserRegister.getUser(params[4]);
@@ -48,6 +48,7 @@ public class ProjectRegister extends BaseRegister {
         }
         projects.add(new Project(params[0], params[1], params[2], params[3], professor,
                 participants, tags));
+        System.out.println("Проект добавлен в систему\n");
     }
 
     public void deleteProject(String projectName) {
@@ -63,6 +64,7 @@ public class ProjectRegister extends BaseRegister {
         } else {
             projects.remove(tmp);
         }
+        System.out.println("Проект удален из системы\n");
     }
 
     public void printProjects() {
@@ -86,9 +88,9 @@ public class ProjectRegister extends BaseRegister {
     }
 
     public void addParticipant(String input) {
-        String[] params = input.split(" ");
+        String[] params = input.split("/");
         if (params.length == 0){
-            System.out.println("Неверные входные данные");
+            System.out.println("Неверные входные данные\n");
             return;
         }
         for (Project project : projects) {
@@ -101,7 +103,7 @@ public class ProjectRegister extends BaseRegister {
     }
 
     public static void deleteParticipant(String input) {
-        String[] params = input.split(" ");
+        String[] params = input.split("/");
         for (Project project : projects) {
             if (project.nameOfProject.equals(params[0])) {
                 project.deleteParticipants(params[1]);

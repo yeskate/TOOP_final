@@ -22,10 +22,10 @@ public class Main {
         String username = in.readLine();
         Person tmp = getUser(username);
         if (tmp == null) {
-            System.out.println("Неверный логин");
+            System.out.println("Неверный логин\n");
             authorization();
         } else {
-            System.out.println("Вход выполнен, здравствуйте, " + username);
+            System.out.println("Вход выполнен, здравствуйте, " + username + "\n");
             user = getUser(username);
         }
     }
@@ -62,7 +62,7 @@ public class Main {
                 UserRegister.search(fragment);
                 break;
             case 6:
-                System.out.println("Введите данные нового участника проекта");
+                System.out.println("Введите название проекта и данные нового участника(через слэш)");
                 if (user.permission != Person.Permission.PARTICIPANT) {
                     input = in.readLine().trim();
                     projectRegister.addParticipant(input);
@@ -71,7 +71,7 @@ public class Main {
                 }
                 break;
             case 7:
-                System.out.println("Введите название проекта и имя участника, которого нужно удалить");
+                System.out.println("Введите название проекта и имя участника, которого нужно удалить (через слэш)");
                 if (user.permission != Person.Permission.PARTICIPANT) {
                     input = in.readLine().trim();
                     deleteParticipant(input);
@@ -81,7 +81,7 @@ public class Main {
                 break;
             case 8:
                 if (user.permission != Person.Permission.PARTICIPANT) {
-                    System.out.println("Введите имя пользователя и рейтинг");
+                    System.out.println("Введите имя пользователя и рейтинг (через слэш)");
                     input = in.readLine().trim();
                     UserRegister.changeRating(input);
                 } else {
@@ -155,7 +155,7 @@ public class Main {
         sb.append("8 - изменение рейтинга участника (доступно администратору, профессору);").append("\n");
         sb.append("9 - добавление пользователя в систему (доступно администратору);").append("\n");
         sb.append("10 - удаление пользователя из системы (доступно администратору);").append("\n");
-        sb.append("11 - добавления проекта в системы (доступно администратору);").append("\n");
+        sb.append("11 - добавления проекта в систему (доступно администратору);").append("\n");
         sb.append("12 - удаление проекта из системы (доступно администратору);").append("\n");
         sb.append("13 - сменить пользователя;").append("\n");
         sb.append("14 - завершение работы.").append("\n");
@@ -168,7 +168,7 @@ public class Main {
         try {
             authorization();
         } catch (IOException e) {
-            System.out.println("Не удалось подключить файл с данными о пользователях");
+            System.out.println("Не удалось подключить файл с данными о пользователях\n");
         }
         //работа с проектами
         try {
