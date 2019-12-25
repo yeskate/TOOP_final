@@ -15,7 +15,6 @@ public abstract class BaseRegister {
 
     public BaseRegister(String path) {
         this.path = Paths.get(path).toAbsolutePath();
-        System.out.println(this.path);
         try {
             if (Files.exists(this.path)) {
                 lines = Files.readAllLines(this.path, StandardCharsets.UTF_8);
