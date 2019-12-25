@@ -20,6 +20,7 @@ public class Main {
     public static ProjectRegister projectRegister = new ProjectRegister();
 
     private static void authorization() throws IOException {
+        System.out.println("Введите логин");
         String username = in.readLine();
         Person tmp = getUser(username);
         if (tmp == null) {
@@ -116,7 +117,6 @@ public class Main {
                         System.out.println("У вас нет доступа");
                     }
                 } catch (Exception e) {
-
                     System.out.println("Oops");
                 }
                 break;
