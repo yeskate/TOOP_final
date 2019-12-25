@@ -32,6 +32,10 @@ public class ProjectRegister extends BaseRegister {
 
     public void addProject(String project) {
         String[] params = project.split("/");
+        if (params.length == 0){
+            System.out.println("Неверные входные данные");
+            return;
+        }
         Professor professor = (Professor) UserRegister.getUser(params[4]);
         professor.addProject(params[0]);
         ArrayList<String> participants = new ArrayList<>();
@@ -63,7 +67,6 @@ public class ProjectRegister extends BaseRegister {
 
     public void printProjects() {
         System.out.println("Список проектов\n");
-        //System.out.println("Название | Цель | Задачи | Сроки | Руководитель | Участники | Тэги\n");
         for (Project project : projects) {
             StringBuilder sb = new StringBuilder();
             sb.append(project.getInfo().replace("/", "\n"));
@@ -84,6 +87,10 @@ public class ProjectRegister extends BaseRegister {
 
     public void addParticipant(String input) {
         String[] params = input.split(" ");
+        if (params.length == 0){
+            System.out.println("Неверные входные данные");
+            return;
+        }
         for (Project project : projects) {
             if (project.nameOfProject.equals(params[0])) {
                 project.addParticipants(params[1]);

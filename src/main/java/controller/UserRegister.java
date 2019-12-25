@@ -61,6 +61,10 @@ public class UserRegister extends BaseRegister {
 
     public void addPerson(String person) {
         String[] params = person.split("/");
+        if (params.length == 0){
+            System.out.println("Неверные входные данные");
+            return;
+        }
         Person user;
         switch (params[1]) {
             case "participant":
